@@ -21,8 +21,11 @@ def main():
 if __name__ == '__main__':
     main()
 
+# trying to fix makemigration issue, configure PYTHONPATH to correct dir
 import os
 
 abspath = os.path.abspath(__file__)
 dname = os.path.dirname(abspath)
 os.chdir(dname)
+
+# :wq commit (w write q quit)
