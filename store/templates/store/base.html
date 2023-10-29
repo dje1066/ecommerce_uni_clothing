@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{% block title %}{% endblock %} | Dinastore</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+    <h1 class="text-3xl font-bold underline">
+      Explore Featured Items
+    </h1>
+    <hr>
+
+    <body>
+        {% block content %}
+        {% endblock %}
+
+    <!--<div id="products">Products
+        {% for product in products %}
+            <div id="item">cool shirt
+            {{ product.name }}
+            {{ product.description }}
+            {{ product.price }}
+            </div>
+        {% endfor %}
+    </div>-->
+
+    </body>
+</html>
