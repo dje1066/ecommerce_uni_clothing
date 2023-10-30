@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from product.models import Product
 
 # Create your views here.
 
@@ -7,8 +8,15 @@ from django.http import HttpResponse
     categories = Category.objects.all()
     return render(request, 'frontpage.html', {'categories': categories})
 """
+
+
 def frontpage(request):
-    return render(request, 'store/frontpage.html')
+    products = Product.objects.all()  # get first 6 products on frontpage
+    return render(request, 'store/frontpage.html', {
+        'products': products
+        # now can be used in template (.html)
+    })
+
 
 def about(request):
     return render(request, 'store/about.html')
