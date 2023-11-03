@@ -1,10 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends 'store/base.html' %}
+
+{% block title %}Sign up{% endblock %}
+
+{% block content %}
+<h1 class="text-2xl">Sign up</h1>
+
+<form method="post" action=".">
+    {% csrf_token %}
+
+    {{ form.as_p }}
+
+    <button>Sign up</button>
+</form>
+{% endblock %}

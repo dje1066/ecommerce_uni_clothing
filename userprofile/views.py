@@ -5,6 +5,11 @@ from .models import Userprofile
 
 # Create your views here.
 
+
+def myaccount(request):
+    return render(request, 'userprofile/myaccount.html')
+
+
 def signup(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
