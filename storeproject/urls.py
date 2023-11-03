@@ -20,8 +20,10 @@ from django.urls import path, include
 from store.views import frontpage, about
 
 urlpatterns = [
-    path('', include('product.urls')),
-    path('', frontpage, name='frontpage'),
     path('about/', about, name='about'),
     path('admin/', admin.site.urls),
+    path('', include('userprofile.urls')),
+    path('', include('store.urls')),
+    path('', include('product.urls')),
+    path('', frontpage, name='frontpage'),
 ]
