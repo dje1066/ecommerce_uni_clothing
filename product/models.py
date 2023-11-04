@@ -3,14 +3,6 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 
-RATING = (
-    (1, "★✩✩✩✩"),
-    (2, "★★✩✩✩"),
-    (3, "★★★✩✩"),
-    (4, "★★★★✩"),
-    (5, "★★★★★"),
-)
-
 
 class Category(models.Model):
     title = models.CharField(max_length=50)
@@ -48,6 +40,17 @@ class Product(models.Model):
         return self.price / 100
         #  prices made by admin are originally in cents
 
+    def get_rating(self):
+        reviews_total = 0
+
+        for review in self.reviews.all():
+            reviews_total += review.rating
+
+        if reviews_total > 0:
+            return reviews_total / self.reviews.count()
+
+        return 0
+
 
 class ProductReview(models.Model):
     created_by = models.ForeignKey(User, null=True, related_name='reviews', on_delete=models.CASCADE)
@@ -56,5 +59,3 @@ class ProductReview(models.Model):
     rating = models.IntegerField(default=3)
     created_at = models.DateTimeField(auto_now_add=True)
 
-    class Meta:
-        verbose_name_plural = 'Product Reviews'
