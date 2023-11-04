@@ -1,0 +1,14 @@
+{% extends 'store/base.html' %}
+
+{% block title %}Cart{% endblock %}
+
+{% block content %}
+    <h1>Cart</h1>
+
+    {% for item in cart %}
+        <p>
+            <b>Title: </b>{{ item.product.title }}<br>
+            <b>Quantity: </b>{{ item.quantity }}
+        </p>
+    {% endfor %}
+{% endblock %}

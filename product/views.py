@@ -12,10 +12,14 @@ def add_to_cart(request, product_id):
     return redirect('frontpage')
 
 
-def product_detail(request, slug):
+def cart_view(request):
     cart = Cart(request)
-    print(cart.get_total_cost())
+    return render(request, 'product/cart_view.html', {
+        'cart': cart
+    })
 
+
+def product_detail(request, slug):
     product = get_object_or_404(Product, slug=slug)  # url representation
     return render(request, 'product/product_detail.html', {
         'product': product
