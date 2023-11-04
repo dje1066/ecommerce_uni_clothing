@@ -47,6 +47,12 @@ class Cart(object):
 
         self.save()  # and redirect to front page
 
+    def remove(self, product_id):
+        if product_id in self.cart:
+            del self.cart[product_id]
+
+            self.save()
+
     def get_total_cost(self):
         for p in self.cart.keys():
             self.cart[str(p)]['product'] = Product.objects.get(pk=p)

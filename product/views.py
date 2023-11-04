@@ -9,7 +9,14 @@ def add_to_cart(request, product_id):
     cart = Cart(request)
     cart.add(product_id)
 
-    return redirect('frontpage')
+    return redirect('cart_view')
+
+
+def remove_from_cart(request, product_id):
+    cart = Cart(request)
+    cart.remove(product_id)
+
+    return redirect('cart_view')
 
 
 def cart_view(request):
