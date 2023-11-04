@@ -45,6 +45,11 @@ class Cart(object):
         if update_quantity:
             self.cart[product_id]['quantity'] += int(quantity)  # increments quantity by int quantity
 
+            # if number of this item is decreased to 0, remove completely
+            # otherwise total would keep decreasing and item quantity is in negatives
+            if self.cart[product_id]['quantity'] == 0:
+                self.remove(product_id)
+
         self.save()  # and redirect to front page
 
     def remove(self, product_id):
