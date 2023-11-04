@@ -12,4 +12,34 @@
     </p>
 
     <a href="{% url 'add_to_cart' product.id %}">Add to cart</a>
+
+    <div class="w-full mt-6">
+        <h2 class="text-xl">Reviews</h2>
+
+        {% if request.user.is_authenticated %}
+            <form method="post" action="." class="mt-6 p-6 bg-gray-100 rounded-xl">
+                {% csrf_token %}
+
+                <div>
+                    <label>Rating</label>
+                    <select name="rating">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                </div><br>
+
+                <div>
+                    <label>Comment</label><br>
+                    <textarea name="content"></textarea>
+                </div><br>
+
+                <div>
+                    <button>Submit</button>
+                </div>
+            </form>
+        {% endif %}
+    </div>
 {% endblock %}

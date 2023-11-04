@@ -3,6 +3,14 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 
+RATING = (
+    (1, "★✩✩✩✩"),
+    (2, "★★✩✩✩"),
+    (3, "★★★✩✩"),
+    (4, "★★★★✩"),
+    (5, "★★★★★"),
+)
+
 
 class Category(models.Model):
     title = models.CharField(max_length=50)
@@ -39,3 +47,14 @@ class Product(models.Model):
     def get_display_price(self):
         return self.price / 100
         #  prices made by admin are originally in cents
+
+
+class ProductReview(models.Model):
+    created_by = models.ForeignKey(User, null=True, related_name='reviews', on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, null=True, related_name='reviews', on_delete=models.CASCADE)
+    content = models.TextField()
+    rating = models.IntegerField(default=3)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name_plural = 'Product Reviews'

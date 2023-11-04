@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Product
+from .models import Product, ProductReview
 from .cart import Cart
 
 # Create your views here.
@@ -42,6 +42,20 @@ def cart_view(request):
 
 def product_detail(request, slug):
     product = get_object_or_404(Product, slug=slug)  # url representation
+
+    if request.method == 'POST':
+        rating = request.POST.get('rating', 3)
+        content = request.POST.get('content', '')
+
+        if content:
+            review = ProductReview.objects.create(
+                product=product,
+                rating=rating,
+                content=content,
+                created_by=request.user
+            )
+            return redirect('product_detail', slug=slug)
+
     return render(request, 'product/product_detail.html', {
         'product': product
     })
