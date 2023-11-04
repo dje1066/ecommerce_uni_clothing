@@ -12,8 +12,14 @@
     {% endif %}
 
     <p class="mt-4">
-        {{ product.description }}
-    </p>
+        {{ product.description }}<br>
+    </p><br>
+
+    {% if product.image %}
+        <div class="image mb-4">
+            <img src="{{ product.image.url }}" alt="Image of {{ product.title }}">
+        </div>
+    {% endif %}
 
     <a href="{% url 'add_to_cart' product.id %}">Add to cart</a>
 
