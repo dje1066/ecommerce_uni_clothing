@@ -18,8 +18,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from store.views import frontpage, about
+from product.views import cart_view
 
 urlpatterns = [
+    path('cart/', cart_view, name='cart'),
     path('about/', about, name='about'),
     path('admin/', admin.site.urls),
     path('', include('userprofile.urls')),

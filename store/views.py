@@ -18,6 +18,10 @@ def frontpage(request):
     })
 
 
+def cart(request):
+    return render(request, 'product/cart_view.html')
+
+
 def about(request):
     return render(request, 'store/about.html')
 
