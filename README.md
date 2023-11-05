@@ -1,4 +1,6 @@
 # ecommerce_uni_clothing
+GitHub repo: https://github.com/dje1066/ecommerce_uni_clothing
+
 Welcome to BMF Clothing! BMF stands for Be My Fashion-- all items are super trendy and belong in your closet. 
 
 Requires latest version of Django, or 3 and above.
