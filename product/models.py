@@ -88,3 +88,7 @@ class ProductReview(models.Model):
     rating = models.IntegerField(default=3)
     created_at = models.DateTimeField(auto_now_add=True)
 
+    review_image = models.ImageField(upload_to='uploads/product_images', blank=True, null=True)
+
+
+

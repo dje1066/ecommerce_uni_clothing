@@ -46,6 +46,7 @@ def product_detail(request, slug):
     if request.method == 'POST':
         rating = request.POST.get('rating', 3)
         content = request.POST.get('content', '')
+        review_image = request.POST.get('review_image', request.FILES)
 
         if content:
             reviews = ProductReview.objects.filter(created_by=request.user, product=product)
@@ -54,12 +55,14 @@ def product_detail(request, slug):
                 review = reviews.first()
                 review.rating = rating
                 review.content = content
+                review.review_image = review_image
                 review.save()
             else:
                 review = ProductReview.objects.create(
                     product=product,
                     rating=rating,
                     content=content,
+                    review_image=review_image,
                     created_by=request.user
                 )
             return redirect('product_detail', slug=slug)
