@@ -26,5 +26,5 @@ def about(request):
     return render(request, 'store/about.html')
 
 
-def signup(request):
-    return render(request, 'userprofile/signup.html')
+def login(request):
+    return render(request, 'userprofile/login.html')
