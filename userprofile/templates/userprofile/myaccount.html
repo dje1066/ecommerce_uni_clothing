@@ -5,5 +5,9 @@
 {% block content %}
 <h1 class="mb-5 text-3xl">My Account</h1>
 
-<a href="{% url 'logout' %}">Log out</a>
+    <div class="mb-6">
+        <strong>Hi, </strong>{{ request.user.username }}<br><br>
+    </div>
+
+<a class="py-4 px-6 rounded-xl text-white bg-indigo-700 hover:bg-indigo-900" href="{% url 'logout' %}">Log out</a>
 {% endblock %}
