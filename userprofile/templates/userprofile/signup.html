@@ -3,13 +3,24 @@
 {% block title %}Sign up{% endblock %}
 
 {% block content %}
-<h1 class="text-2xl">Sign up</h1>
+<div class="flex flex-wrap p-6">
+    <div class="py-6 px-6 w-full bg-gray-100 p-g rounded-xl">
+        <h1 class="mb-5 text-3xl">Sign up</h1>
 
-<form method="post" action=".">
-    {% csrf_token %}
+        <form method="post" action=".">
+            {% csrf_token %}
 
-    {{ form.as_p }}
+            {{ form.as_p }}<br>
 
-    <button>Sign up</button>
-</form>
+            <button class="py-4 px-6 rounded-xl text-white bg-indigo-700 hover:bg-indigo-900">Sign up</button>
+        </form><br>
+
+        <strong>Or, if you have an account:</strong><br>
+        <br>
+        <!--<button type="submit" action="{% url 'login' %}" class="py-4 px-6 rounded-xl text-white bg-indigo-700 hover:bg-indigo-900">Log In</button>-->
+        <a href="{% url 'login' %}" class="py-4 px-6 rounded-xl text-white bg-indigo-700 hover:bg-indigo-900">Log In</a>
+    </div>
+
+</div>
+
 {% endblock %}
