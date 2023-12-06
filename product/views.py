@@ -9,19 +9,22 @@ from django.http import JsonResponse
 from django.shortcuts import render
 
 
-# Create your views here.
+def index(request):
+    return render(request, 'store/frontpage.html')
+
+
 class ProductView(APIView):
     def get(self, request):
         products = Product.objects.all()
         serializer = ProductSerializer(products, many=True)
-        return JsonResponse(serializer.data)
+        return Response(serializer.data)
 
     def post(self, request):
         serializer = ProductSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
-            return JsonResponse(serializer.data, status=status.HTTP_201_CREATED)
-        return JsonResponse(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 class AddToCart(APIView):
