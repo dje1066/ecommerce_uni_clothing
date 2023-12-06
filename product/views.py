@@ -1,15 +1,35 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Product, ProductReview
 from .cart import Cart
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
+from .serializer import ProductSerializer, ProductReviewSerializer
+from django.http import JsonResponse
+from django.shortcuts import render
+
 
 # Create your views here.
+class ProductView(APIView):
+    def get(self, request):
+        products = Product.objects.all()
+        serializer = ProductSerializer(products, many=True)
+        return JsonResponse(serializer.data)
+
+    def post(self, request):
+        serializer = ProductSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return JsonResponse(serializer.data, status=status.HTTP_201_CREATED)
+        return JsonResponse(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-def add_to_cart(request, product_id):
-    cart = Cart(request)
-    cart.add(product_id)
+class AddToCart(APIView):
+    def add_to_cart(self, request, product_id):
+        cart = Cart(request)
+        cart.add(product_id)
 
-    return redirect('cart_view')
+        return Response(ProductSerializer(cart).data)
 
 
 def change_quantity(request, product_id):
